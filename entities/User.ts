@@ -6,8 +6,17 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
-import { Transcription } from "./Transcription";
-import { Dictionary } from "./Dictionary";
+
+// Use dynamic imports to avoid circular dependency
+const getTranscription = () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require("./Transcription").Transcription;
+};
+
+const getDictionary = () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require("./Dictionary").Dictionary;
+};
 
 @Entity("users")
 export class User {
@@ -29,9 +38,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Transcription, (transcription) => transcription.user)
-  transcriptions: Transcription[];
+  @OneToMany(getTranscription, "user")
+  transcriptions!: unknown[];
 
-  @OneToMany(() => Dictionary, (dictionary) => dictionary.user)
-  dictionaryEntries: Dictionary[];
+  @OneToMany(getDictionary, "user")
+  dictionaryEntries!: unknown[];
 }
