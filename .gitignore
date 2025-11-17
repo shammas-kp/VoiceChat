@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore documentation files (added per request)
+README.md
+DEPLOYMENT.md
+QUICKSTART.md
+PROJECT_SUMMARY.md
