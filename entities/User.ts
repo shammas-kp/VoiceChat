@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
+import { Transcription } from "./Transcription";
+import { Dictionary } from "./Dictionary";
 
 @Entity("users")
 export class User {
@@ -27,9 +29,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany("Transcription", "user")
-  transcriptions: any[];
+  @OneToMany(() => Transcription, (transcription) => transcription.user)
+  transcriptions: Transcription[];
 
-  @OneToMany("Dictionary", "user")
-  dictionaryEntries: any[];
+  @OneToMany(() => Dictionary, (dictionary) => dictionary.user)
+  dictionaryEntries: Dictionary[];
 }
