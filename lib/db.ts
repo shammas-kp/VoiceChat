@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME || "voice_keyboard",
   synchronize: process.env.NODE_ENV !== "production",
   logging: process.env.NODE_ENV === "development",
-  entities: [User, Transcription, Dictionary],
+  entities: [__dirname + "/entities/*.{ts,js}"],
   migrations: [],
   subscribers: [],
 });
