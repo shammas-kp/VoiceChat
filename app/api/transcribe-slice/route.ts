@@ -5,10 +5,21 @@ import { createClient } from "@deepgram/sdk";
 import { getDatabase } from "@/lib/db";
 import { Dictionary } from "@/entities/Dictionary";
 
-const deepgram = createClient(process.env.DEEPGRAM_API_KEY || "");
-
 export async function POST(request: NextRequest) {
   try {
+    // Lazily create the Deepgram client at request time so missing
+    // environment variables don't cause module-evaluation errors
+    // during `next build` or other server-side static analysis.
+    const deepgramApiKey = process.env.DEEPGRAM_API_KEY;
+    if (!deepgramApiKey) {
+      console.error("Missing DEEPGRAM_API_KEY environment variable");
+      return NextResponse.json(
+        { error: "Server misconfiguration: missing Deepgram API key" },
+        { status: 500 }
+      );
+    }
+    const deepgram = createClient(deepgramApiKey);
+
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
