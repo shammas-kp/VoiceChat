@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "@/entities/User";
-import { Transcription } from "@/entities/Transcription";
-import { Dictionary } from "@/entities/Dictionary";
+import { User } from "../entities/User";
+import { Transcription } from "../entities/Transcription";
+import { Dictionary } from "../entities/Dictionary";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME || "voice_keyboard",
   synchronize: process.env.NODE_ENV !== "production",
   logging: process.env.NODE_ENV === "development",
-  entities: [__dirname + "/../entities/*.{ts,js}"],
+  entities: [User, Transcription, Dictionary],
   migrations: [],
   subscribers: [],
 });
