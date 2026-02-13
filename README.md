@@ -2,6 +2,10 @@
 
 A full-stack web application that converts voice into well-formatted text using AI-powered transcription with Deepgram and intelligent text cleanup with Groq LLM.
 
+## Video Demo
+
+![initial as video demo](https://github.com/user-attachments/assets/8d83e61b-4f33-4019-b367-f9d6f2348f90)
+
 ## Features
 
 - **User Authentication**: Secure email/password authentication with NextAuth.js
