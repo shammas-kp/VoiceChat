@@ -4,7 +4,7 @@ A full-stack web application that converts voice into well-formatted text using 
 
 ## Video Demo
 
-![initial as video demo](https://github.com/user-attachments/assets/8d83e61b-4f33-4019-b367-f9d6f2348f90)
+![image](https://github.com/user-attachments/assets/8d83e61b-4f33-4019-b367-f9d6f2348f90)
 
 ## Features
 
